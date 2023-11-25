@@ -1,6 +1,5 @@
 package com.senai.Mobili.Controllers;
 
-import com.senai.Mobili.Models.ServicoModel;
 import com.senai.Mobili.Models.ServicoModel2;
 import com.senai.Mobili.Repositories.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,13 +12,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/servicos", produces = {"application/json"})
-public class ServicoController {
+@RequestMapping(value = "/servico", produces = {"application/json"})
+public class ServicoController2 {
+
     @Autowired
     ServicoRepository servicoRepository;
 
     @GetMapping
-    public ResponseEntity<List<ServicoModel2>> listarServicos() {
+    public ResponseEntity<List<ServicoModel2>> ListarServico(){
         return ResponseEntity.status(HttpStatus.OK).body(servicoRepository.findAll());
     }
+
 }
