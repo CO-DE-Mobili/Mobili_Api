@@ -9,4 +9,5 @@ import java.util.UUID;
 
 @Repository
 public interface ParceiroRepositories2 extends JpaRepository<ParceiroModel2, UUID> {
+    ParceiroModel2 findByEmail (String email);
 }
