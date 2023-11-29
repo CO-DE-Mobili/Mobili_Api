@@ -8,4 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface EmpresaRepository extends JpaRepository<EmpresaModel, UUID>{
+    EmpresaModel findByCnpj(String cnpj);
 }

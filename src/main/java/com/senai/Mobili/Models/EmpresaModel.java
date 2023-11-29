@@ -6,6 +6,8 @@ import lombok.Setter;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
@@ -22,114 +24,15 @@ public class EmpresaModel implements Serializable {
     private String nome;
     private String razao_social;
     private String cnpj;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    private String cep;
+    private String logradouro;
+    private String complemento;
+    private String bairro;
+    private String localidade;
+    private String uf;
+    private String ddd;
     private String descricao;
-    private boolean aprovado;
+    private Time hora_abertura;
+    private Time hora_fechamento;
+    private boolean aprovado = false;
 }
