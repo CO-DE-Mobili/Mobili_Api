@@ -67,7 +67,7 @@ public class ParceiroController2 {
         return ResponseEntity.status(HttpStatus.CREATED).body(parceiroRepositories2.save(parceiroModel2));
     }
 
-    @PutMapping (value = "/{idParceiro}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PutMapping(value = "/{idParceiro}", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Object> editarParceiro(@PathVariable(value = "idParceiro")UUID id,@ModelAttribute @Valid ParceiroDto parceiroDto){
 
         Optional<ParceiroModel2> parceiroBuscado = parceiroRepositories2.findById(id);
