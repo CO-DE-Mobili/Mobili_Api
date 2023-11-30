@@ -27,6 +27,8 @@ public class ParceiroModel2  implements Serializable {
     private String telefone;
     private boolean aprovado;
 
+    private String urlImg;
+
 
 
 
