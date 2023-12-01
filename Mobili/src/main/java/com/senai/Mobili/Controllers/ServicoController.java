@@ -1,6 +1,5 @@
 package com.senai.Mobili.Controllers;
 
-import com.senai.Mobili.Models.ServicoModel;
 import com.senai.Mobili.Models.ServicoModel2;
 import com.senai.Mobili.Repositories.ServicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

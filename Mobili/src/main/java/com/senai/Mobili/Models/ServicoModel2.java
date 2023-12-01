@@ -32,5 +32,5 @@ public class ServicoModel2 implements Serializable {
 
     private String duracao_parceria;
 
-    private String id_servico;
+    private String urlImg;
 }
