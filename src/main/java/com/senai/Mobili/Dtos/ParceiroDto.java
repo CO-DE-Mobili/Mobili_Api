@@ -6,9 +6,6 @@ public record ParceiroDto(String nome,
                           @Email String email,
                           String senha,
                           String telefone
-
-
-
 ) {}
 
 

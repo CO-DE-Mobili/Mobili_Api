@@ -9,6 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,8 +46,11 @@ public class ParceiroController2 {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email ja cadastrado");
 
         }
-       ParceiroModel2 parceiroModel2 = new ParceiroModel2();
+        ParceiroModel2 parceiroModel2 = new ParceiroModel2();
         BeanUtils.copyProperties(dadosRecebidos,parceiroModel2);
+
+        String senhaCript = new BCryptPasswordEncoder().encode(dadosRecebidos.senha());
+        parceiroModel2.setSenha(senhaCript);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(parceiroRepositories2.save(parceiroModel2));
     }
