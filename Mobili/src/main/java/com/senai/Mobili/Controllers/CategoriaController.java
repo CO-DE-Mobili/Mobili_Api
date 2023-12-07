@@ -45,21 +45,10 @@ public class CategoriaController {
             return ResponseEntity.status(HttpStatus.OK).body(categoriaBuscado.get());
         }
 
-        @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Object> cadastrarCategoria(@ModelAttribute @Valid CategoriaDto dadosRecebidos){
+        @PostMapping
+        public ResponseEntity<Object> cadastrarCategoria(@RequestBody @Valid CategoriaDto dadosRecebidos){
             CategoriaModel categoriaModel = new CategoriaModel();
             BeanUtils.copyProperties(dadosRecebidos, categoriaModel);
-
-            String urlImg;
-
-            try {
-                urlImg = fileuploadServices.fazerUpload(dadosRecebidos.img());
-
-            }catch (IOException e){
-                throw new RuntimeException(e);
-            }
-
-            categoriaModel.setUrl_img(urlImg);
 
             return ResponseEntity.status(HttpStatus.CREATED).body(categoriaRepository.save(categoriaModel));
         }
@@ -74,17 +63,6 @@ public class CategoriaController {
 
             CategoriaModel categoriaModel = categoriaBuscado.get();
             BeanUtils.copyProperties(categoriaDto, categoriaModel);
-
-            String urlImg;
-
-            try {
-                urlImg = fileuploadServices.fazerUpload(categoriaDto.img());
-
-            }catch (IOException e){
-                throw new RuntimeException(e);
-            }
-
-            categoriaModel.setUrl_img(urlImg);
 
             return ResponseEntity.status(HttpStatus.OK).body(categoriaRepository.save(categoriaModel));
         }

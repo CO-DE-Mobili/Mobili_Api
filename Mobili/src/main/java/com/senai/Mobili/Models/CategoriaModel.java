@@ -19,10 +19,9 @@ public class CategoriaModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_categoria", nullable = false)
+    @Column(name = "id", nullable = false)
     private UUID id;
 
     private String nome;
-    private  String Url_img;
 
 }
