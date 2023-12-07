@@ -25,6 +25,17 @@ public class EmpresaController {
         return ResponseEntity.status(HttpStatus.OK).body(empresaRepository.findAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> buscarEmpresa(@PathVariable(value = "id") UUID id){
+        Optional<EmpresaModel> empresaBuscado = empresaRepository.findById(id);
+
+        if (empresaBuscado.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(empresaBuscado.get());
+    }
+
     @PostMapping
     public ResponseEntity<Object> criarEmpresa(@RequestBody @Valid EmpresaDto empresaDto) {
         EmpresaModel novaEmpresa;
@@ -52,7 +63,7 @@ public class EmpresaController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deletarEmpresa(@PathVariable(value = "id") UUID id, @RequestBody @Valid EmpresaDto empresaDto) {
+    public ResponseEntity<Object> deletarEmpresa(@PathVariable(value = "id") UUID id) {
         Optional<EmpresaModel> empresaBuscado = empresaRepository.findById(id);
 
         if (empresaBuscado.isEmpty()) {
@@ -62,18 +73,5 @@ public class EmpresaController {
 
         empresaRepository.delete(empresaBuscado.get());
         return ResponseEntity.status(HttpStatus.OK).body("Empresa deletada com sucesso!");
-    }
-
-
-    @GetMapping("/{id}")
-
-    public ResponseEntity<Object> buscarEmpresa(@PathVariable(value = "id") UUID id){
-        Optional<EmpresaModel> empresaBuscado = empresaRepository.findById(id);
-
-        if (empresaBuscado.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Empresa não encontrada");
-        }
-
-        return ResponseEntity.status(HttpStatus.OK).body(empresaBuscado.get());
     }
 }
