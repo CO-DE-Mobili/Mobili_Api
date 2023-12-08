@@ -22,7 +22,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<Object> login(@RequestBody LoginDto dadosLogin) {
-        System.out.println(dadosLogin);
         var usernamePassword = new UsernamePasswordAuthenticationToken(dadosLogin.email(), dadosLogin.senha());
         var auth = authenticationManager.authenticate(usernamePassword);
         var token = tokenService.gerarToken((ParceiroModel) auth.getPrincipal());
