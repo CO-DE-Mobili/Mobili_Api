@@ -3,7 +3,7 @@ package com.senai.Mobili.Controllers;
 import com.senai.Mobili.Dtos.CategoriaDto;
 import com.senai.Mobili.Models.CategoriaModel;
 import com.senai.Mobili.Repositories.CategoriaRepository;
-import com.senai.Mobili.Services.FileuploadServices;
+import com.senai.Mobili.Services.FileUploadService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,7 +26,7 @@ public class CategoriaController {
         CategoriaRepository categoriaRepository;
 
         @Autowired
-    FileuploadServices fileuploadServices;
+        FileUploadService fileUploadService;
 
         @GetMapping
         public ResponseEntity<List<CategoriaModel>> listarCategoria() {
@@ -35,7 +34,7 @@ public class CategoriaController {
         }
 
         @GetMapping("/{idCategoria}")
-    public ResponseEntity<Object> buscarCategoriaId(@PathVariable(value = "idCategoria")UUID id) {
+        public ResponseEntity<Object> buscarCategoriaId(@PathVariable(value = "idCategoria")UUID id) {
             Optional<CategoriaModel> categoriaBuscado = categoriaRepository.findById(id);
 
             if (categoriaBuscado.isEmpty()) {
