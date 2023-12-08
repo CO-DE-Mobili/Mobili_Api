@@ -2,9 +2,8 @@ package com.senai.Mobili.Services;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTCreationException;
-import com.senai.Mobili.Models.ParceiroModel2;
+import com.senai.Mobili.Models.ParceiroModel;
 //import lombok.Value;
-import com.senai.Mobili.Repositories.ParceiroRepositories2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -18,7 +17,7 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
-    public String gerarToken(ParceiroModel2 usuario){
+    public String gerarToken(ParceiroModel usuario){
         try{
             Algorithm algoritimo = Algorithm.HMAC256(secret);
             String token = JWT.create()

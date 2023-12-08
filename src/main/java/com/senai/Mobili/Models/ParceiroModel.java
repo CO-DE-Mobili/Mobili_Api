@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "tb_parceiro") //consumindo da tabela especifica do meu banco de dados//
-public class ParceiroModel2  implements Serializable, UserDetails {
+public class ParceiroModel implements Serializable, UserDetails {
 
     @Serial
     private static final long serialVersionUID = 1l;
