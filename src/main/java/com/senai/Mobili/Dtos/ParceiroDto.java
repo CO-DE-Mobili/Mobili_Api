@@ -8,10 +8,6 @@ public record ParceiroDto(String nome,
                           String senha,
                           String telefone,
                           MultipartFile img
-
-
-
-
 ) {}
 
 

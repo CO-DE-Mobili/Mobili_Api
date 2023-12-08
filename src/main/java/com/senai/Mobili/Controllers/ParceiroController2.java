@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
@@ -22,8 +23,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping(value = "/parceiro", produces = {"application/json"})
 public class ParceiroController2 {
-
-
     @Autowired
     FileUploadService fileUploadService;
     @Autowired
@@ -44,14 +43,18 @@ public class ParceiroController2 {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioBuscado.get());
     }
 
-    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
-    public ResponseEntity<Object> cadastraUsuario(@ModelAttribute @Valid ParceiroDto dadosRecebidos){
+    @PostMapping
+    public ResponseEntity<Object> cadastraUsuario(@RequestBody @Valid ParceiroDto dadosRecebidos){
         if(parceiroRepositories2.findByEmail(dadosRecebidos.email()) != null ){
+
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email ja cadastrado");
 
         }
        ParceiroModel2 parceiroModel2 = new ParceiroModel2();
         BeanUtils.copyProperties(dadosRecebidos,parceiroModel2);
+
+        String senhaCript = new BCryptPasswordEncoder().encode(dadosRecebidos.senha());
+        parceiroModel2.setSenha(senhaCript);
 
         String urlimg;
         try{
