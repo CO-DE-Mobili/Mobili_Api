@@ -5,6 +5,9 @@ import com.senai.Mobili.Dtos.ParceiroDto;
 import com.senai.Mobili.Models.ParceiroModel;
 import com.senai.Mobili.Repositories.ParceiroRepository;
 import com.senai.Mobili.Services.FileUploadService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +45,13 @@ public class ParceiroController {
         return ResponseEntity.status(HttpStatus.OK).body(usuarioBuscado.get());
     }
 
-    @PostMapping
-    public ResponseEntity<Object> cadastraUsuario(@RequestBody @Valid ParceiroDto dadosRecebidos){
+    @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @Operation(summary = "Método para cadastrar um Usuário", method = "POST")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Cadastro foi efetuado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Paramatros inválidos")
+    })
+    public ResponseEntity<Object> cadastraUsuario(@ModelAttribute @Valid ParceiroDto dadosRecebidos){
         if(parceiroRepository.findByEmail(dadosRecebidos.email()) != null ){
 
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Email ja cadastrado");

@@ -46,20 +46,18 @@ public class ServicoController {
 
     @PostMapping(consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public ResponseEntity<Object> cadastrarServico(@ModelAttribute @Valid ServicoDto dadosRecebidos) {
-
-
         ServicoModel servicoModel = new ServicoModel();
         BeanUtils.copyProperties(dadosRecebidos, servicoModel);
 
-        String urlImg;
+        String urlImagem;
 
         try {
-            urlImg = fileUploadService.fazerUpload(dadosRecebidos.img());
+            urlImagem = fileUploadService.fazerUpload(dadosRecebidos.imagem());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        servicoModel.setUrlImg(urlImg);
+        servicoModel.setUrl_img(urlImagem);
         return ResponseEntity.status(HttpStatus.CREATED).body(servicoRepository.save(servicoModel));
     }
 
@@ -79,12 +77,12 @@ public class ServicoController {
         String urlImg;
 
         try {
-            urlImg = fileUploadService.fazerUpload(servicoDto.img());
+            urlImg = fileUploadService.fazerUpload(servicoDto.imagem());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        servicoModel.setUrlImg(urlImg);
+        servicoModel.setUrl_img(urlImg);
 
         return ResponseEntity.status(HttpStatus.OK).body(servicoRepository.save(servicoModel));
     }
