@@ -22,7 +22,7 @@ public class ServicoModel implements Serializable {
 
     private String nome;
 
-    private String foto;
+    private String url_img;
 
     private String servico;
 
@@ -31,6 +31,4 @@ public class ServicoModel implements Serializable {
     private String valor;
 
     private String duracao_parceria;
-
-    private String urlImg;
 }

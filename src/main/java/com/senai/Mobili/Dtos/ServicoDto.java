@@ -6,7 +6,6 @@ import org.springframework.web.multipart.MultipartFile;
 public record ServicoDto(
 
         @NotBlank String nome,
-        @NotBlank String foto,
 
         String servico,
 
@@ -16,8 +15,7 @@ public record ServicoDto(
 
         String duracao_parceria,
 
-        MultipartFile img
-
+        MultipartFile imagem
 
 ) {
 }
